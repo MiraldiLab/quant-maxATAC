@@ -19,7 +19,7 @@ quant-maxATAC requires three inputs:
 
 * DNA sequence, in [`.2bit`](https://genome.ucsc.edu/goldenPath/help/twoBit.html) file format.
 * ATAC-seq signal, processed as described [below](#Preparing-your-ATAC-seq-signal).
-* Trained maxATAC TF Models, in [`.h5`](https://www.tensorflow.org/tutorials/keras/save_and_load) file format.
+* Trained quant-maxATAC TF Models, in [`.h5`](https://www.tensorflow.org/tutorials/keras/save_and_load) file format.
 
 > **quant-maxATAC was trained and evaluated on data generated using the hg38 reference genome. The default paths and files that are used for each function will reference hg38 files. If you want to use quant-maxATAC with any other species or reference, you will need to provide the appropriate chromosome sizes file, blacklist, and `.2bit` file specific to your data.**
 
@@ -40,7 +40,7 @@ This version requires python 3.9, `bedtools`, `samtools`, `pigz`, `wget`, `git`,
 > If you get an error regarding graphviz while training a model, re-install graphviz with `conda install graphviz`
 
 2. A. To install quant-maxATAC with first install the packages and their specific versions in requirements.txt file `pip install -r packaging/constraints/py3.9_requirements_20240807.txt`
-   B. Once the requirements are installed then install maxatac with `pip install maxatac`
+   B. Once the requirements are installed then install quant-maxatac with `pip install maxatac`
 
 3. Test installation with `maxatac -h`
 
@@ -50,7 +50,7 @@ This version requires python 3.9, `bedtools`, `samtools`, `pigz`, `wget`, `git`,
 
 ### Downloading required reference data
 
-In order to run the maxATAC models that were described in the [maxATAC pre-print](https://www.biorxiv.org/content/10.1101/2022.01.28.478235v1), the following files are required to be downloaded from the [maxATAC_data](https://github.com/MiraldiLab/maxATAC_data) repository and installed in the correct directory:
+In order to run the quant-maxATAC models, the model files required can be found in [quant-maxATAC_data](https://github.com/MiraldiLab/quant-maxATAC_data) repository and installed in the correct directory:
 
 * hg38 reference genome `.2bit` file
 * hg38 chromosome sizes file
@@ -59,17 +59,17 @@ In order to run the maxATAC models that were described in the [maxATAC pre-print
 * TF specific thresholding files
 * Bash scripts for preparing data
 
-The easiest option is to use the command `maxatac data` to download the data to the required directory. The `maxatac data` function will download the maxATAC_data repo and reference data into your `~/opt/` directory under `~/opt/maxatac`. Only the hg38 reference genome has been extensively tested.
+The easiest option is to use the command `maxatac data` to download the data to the required directory. The `maxatac data` function will download the quant-maxATAC_data repo and reference data into your `~/opt/` directory under `~/opt/maxatac`. Only the hg38 reference genome has been extensively tested.
 
 #### Using custom reference data
 
-The directory `~/opt/maxatac/data` is the default location where maxATAC will look for the maxATAC models, hg38 reference annotations, etc.
+The directory `~/opt/maxatac/data` is the default location where quant-maxATAC will look for the quant-maxATAC models, hg38 reference annotations, etc.
 
 If you want to use your own references (e.g., hg19) or models, set the appropriate flags for each file with the path to your custom files. You can also adjust the relative paths in `constants.py` to be the default values for all functions.
 
 ___
 
-## maxATAC Quick Start Overview
+## Quick Start Overview
 
 ![maxATAC Quick Start Overview](./docs/figs/quickstart.svg)
 
@@ -79,7 +79,7 @@ ___
 
 * DNA sequence, in [`.2bit`](https://genome.ucsc.edu/goldenPath/help/twoBit.html) file format.
 * ATAC-seq signal, processed as described [below](#preparing-the-atac-seq-signal).
-* Trained maxATAC TF Models, in [`.h5`](https://www.tensorflow.org/tutorials/keras/save_and_load) file format.
+* Trained quant-maxATAC TF Models, in [`.h5`](https://www.tensorflow.org/tutorials/keras/save_and_load) file format.
 
 ### Outputs
 
@@ -88,9 +88,9 @@ ___
 
 ## ATAC-seq Data Requirements
 
-As described in the [maxATAC pre-print](https://www.biorxiv.org/content/10.1101/2022.01.28.478235v1), **maxATAC processing of ATAC-seq signal is critical to maxATAC prediction**. Key maxATAC processing steps, summarized in a single command [`maxatac prepare`](./docs/readme/prepare.md#Prepare), include identification of Tn5 cut sites from ATAC-seq fragments, ATAC-seq signal smoothing, filtering with an extended "maxATAC" blacklist, and robust, min-max-like normalization. 
+As described in the [maxATAC publication](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010863), **maxATAC processing of ATAC-seq signal is critical to maxATAC prediction**. Key maxATAC processing steps, summarized in a single command [`maxatac prepare`](./docs/readme/prepare.md#Prepare), include identification of Tn5 cut sites from ATAC-seq fragments, ATAC-seq signal smoothing, filtering with an extended "maxATAC" blacklist, and robust, min-max-like normalization. 
 
-The maxATAC models were trained on paired-end ATAC-seq data in human. For this reason, we recommend paired-end sequencing with sufficient sequencing depth (e.g., ~20M reads for bulk ATAC-seq). Until these models are benchmarked in other species, we recommend limiting their use to human ATAC-seq datasets. 
+The quant-maxATAC models were trained on paired-end ATAC-seq data in human. For this reason, we recommend paired-end sequencing with sufficient sequencing depth (e.g., ~20M reads for bulk ATAC-seq). Until these models are benchmarked in other species, we recommend limiting their use to human ATAC-seq datasets. 
 
 ### Preparing the ATAC-seq signal
 
@@ -162,7 +162,7 @@ There are 127 TF models x ~700MB per TF model = ~88.9 GB of bigwig files for a s
 
 ___
 
-## maxATAC functions
+## quant-maxATAC functions
 
 | Subcommand                                          | Description                                    |
 |-----------------------------------------------------|------------------------------------------------|
