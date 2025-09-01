@@ -5,51 +5,47 @@
 
 ## Introduction
 
+Quant-maxATAC is a code base for quantitative transcription factor (TF) binding prediction from ATAC-seq signal and DNA sequence in *human* cell types. Quant-maxATAC builds upon the original python package maxATAC, and it too works with both population-level (bulk) ATAC-seq and pseudobulk ATAC-seq profiles derived from single-cell (sc)ATAC-seq. Quant-maxATAC quantitatively models ChIP-seq signal in the context of cross-cell type TF binding site TFBS prediction at 32 bp resolution form ATAC-seq data. 
 
-maxATAC is a Python package for transcription factor (TF) binding prediction from ATAC-seq signal and DNA sequence in *human* cell types. maxATAC works with both population-level (bulk) ATAC-seq and pseudobulk ATAC-seq profiles derived from single-cell (sc)ATAC-seq. maxATAC makes TF binding site (TFBS) predictions at 32 bp resolution.
-maxATAC requires three inputs:
+<img width="445" height="374" alt="250831_quant_maxATAC_figures copy" src="https://github.com/user-attachments/assets/bb980fbb-5250-4d4e-889e-a41b0a24e740" />
+
+(A) The quantitative maxATAC (“quant-maxATAC”) models predict TF ChIP-seq signal from ATAC-seq and genomic sequence inputs. As is standard for deep learning, gradient-based algorithms are used to tune model parameters according to training loss. (B) In maxATAC-v1, models were trained using cross-entropy loss and binary TFBS targets (peak calls), where “mistakes” for ChIP-seq peaks (i) and (ii) would contribute equally to parameter tuning, even though peak (i) has more ChIP-seq signal than peak (ii) (i.e., is higher confidence, corresponds to larger fold-change over background signal). Thus, instructive, quantitative ChIP-seq signal is not leveraged with binary modeling. In a similar vein, region (iii) shows below-threshold peak signal that may reflect a low-affinity TF binding site (e.g., expected to be bound by only a subset of cells in the population). This below-threshold signal may also be instructive in model training but cannot be leveraged by binary TFBS modeling. In contrast, training with quantitative loss on ChIP-seq signal would avoid arbitrary peak-call thresholds and enable more efficient training. These observations motivate the evaluation of quantitative TFBS targets and loss functions in this study. Data shown depict CEBPB TF ChIP-seq signal (linear fold-change) and ChIP-seq peak calls in A549 cells.  
+
+<img width="468" height="227" alt="image" src="https://github.com/user-attachments/assets/6d20611e-9f7a-4025-94d2-09fa23560c16" />
+
+
+quant-maxATAC requires three inputs:
 
 * DNA sequence, in [`.2bit`](https://genome.ucsc.edu/goldenPath/help/twoBit.html) file format.
 * ATAC-seq signal, processed as described [below](#Preparing-your-ATAC-seq-signal).
 * Trained maxATAC TF Models, in [`.h5`](https://www.tensorflow.org/tutorials/keras/save_and_load) file format.
 
-> **maxATAC was trained and evaluated on data generated using the hg38 reference genome. The default paths and files that are used for each function will reference hg38 files. If you want to use maxATAC with any other species or reference, you will need to provide the appropriate chromosome sizes file, blacklist, and `.2bit` file specific to your data.**
+> **quant-maxATAC was trained and evaluated on data generated using the hg38 reference genome. The default paths and files that are used for each function will reference hg38 files. If you want to use quant-maxATAC with any other species or reference, you will need to provide the appropriate chromosome sizes file, blacklist, and `.2bit` file specific to your data.**
 
 ___
 
 ## Installation
 
-It is best to install maxATAC into a dedicated virtual environment.
+It is best to install quant-maxATAC into a dedicated virtual environment.
 
 This version requires python 3.9, `bedtools`, `samtools`, `pigz`, `wget`, `git`, `graphviz`, and `ucsc-bedgraphtobigwig` in order to run all functions.
 
-> The total install data requirements for maxATAC is ~2 GB.
+> The total install data requirements are ~2 GB.
 
 ### Installing with Conda
 
-1. Create a conda environment for maxATAC with `conda create -n maxatac -c bioconda python=3.9 samtools wget bedtools ucsc-bedgraphtobigwig pigz`
+1. Create a conda environment with `conda create -n maxatac -c bioconda python=3.9 samtools wget bedtools ucsc-bedgraphtobigwig pigz`
 
 > If you get an error regarding graphviz while training a model, re-install graphviz with `conda install graphviz`
 
-2. Install maxATAC with `pip install maxatac`
+2. A. To install quant-maxATAC with first install the packages and their specific versions in requirements.txt file `pip install -r packaging/constraints/py3.9_requirements_20240807.txt`
+   B. Once the requirements are installed then install maxatac with `pip install maxatac`
 
 3. Test installation with `maxatac -h`
 
 4. Download reference data with `maxatac data`
 
 > If you have an error related to pybigwig, reference issues: [96](https://github.com/MiraldiLab/maxATAC/issues/96) and [87](https://github.com/MiraldiLab/maxATAC/issues/87#issue-1139117054)
-
-### Installing with python virtualenv
-
-1. Create a virtual environment for maxATAC with `virtualenv -p python3.9 maxatac`.
-
-2. Install required packages and make sure they are on your PATH: samtools, bedtools, bedGraphToBigWig, wget, git, pigz.
-
-3. Install maxatac with `pip install maxatac`
-
-4. Test installation with `maxatac -h`
-
-5. Download reference data with `maxatac data`
 
 ### Downloading required reference data
 
@@ -182,8 +178,5 @@ ___
 
 ## Publication
 
-The maxATAC manuscript is available on [PLoS Computational Biology](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010863). 
+The qunt-maxATAC paper (Rizvi et al. 2025) is currently in submission. maxATAC-v1 manuscript is available on [PLoS Computational Biology](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010863). 
 
-```pre
-Tareian Cazares, Faiz W. Rizvi, Balaji Iyer, Xiaoting Chen, Michael Kotliar, Joseph A. Wayman, Anthony Bejjani, Omer Donmez, Benjamin Wronowski, Sreeja Parameswaran, Leah C. Kottyan, Artem Barski, Matthew T. Weirauch, VB Surya Prasath, Emily R. Miraldi (2023) maxATAC: Genome-scale transcription-factor binding prediction from ATAC-seq with deep neural networks. PLoS Comput Biol 19(1): e1010863. https://doi.org/10.1371/journal.pcbi.1010863
-```
