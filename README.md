@@ -11,8 +11,6 @@ Quant-maxATAC is a code base for quantitative transcription factor (TF) binding 
 
 (A) The quantitative maxATAC (“quant-maxATAC”) models predict TF ChIP-seq signal from ATAC-seq and genomic sequence inputs. As is standard for deep learning, gradient-based algorithms are used to tune model parameters according to training loss. (B) In maxATAC-v1, models were trained using cross-entropy loss and binary TFBS targets (peak calls), where “mistakes” for ChIP-seq peaks (i) and (ii) would contribute equally to parameter tuning, even though peak (i) has more ChIP-seq signal than peak (ii) (i.e., is higher confidence, corresponds to larger fold-change over background signal). Thus, instructive, quantitative ChIP-seq signal is not leveraged with binary modeling. In a similar vein, region (iii) shows below-threshold peak signal that may reflect a low-affinity TF binding site (e.g., expected to be bound by only a subset of cells in the population). This below-threshold signal may also be instructive in model training but cannot be leveraged by binary TFBS modeling. In contrast, training with quantitative loss on ChIP-seq signal would avoid arbitrary peak-call thresholds and enable more efficient training. These observations motivate the evaluation of quantitative TFBS targets and loss functions in this study. Data shown depict CEBPB TF ChIP-seq signal (linear fold-change) and ChIP-seq peak calls in A549 cells.  
 
-<img width="468" height="227" alt="image" src="https://github.com/user-attachments/assets/6d20611e-9f7a-4025-94d2-09fa23560c16" />
-
 
 quant-maxATAC requires three inputs:
 
