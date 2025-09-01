@@ -25,7 +25,7 @@ def run_data(args):
     maxatac_final_dir = os.path.join(maxatac_dir, "data")
 
     # Command to clone the data repo
-    clone = "git clone --depth 1 https://github.com/MiraldiLab/maxATAC_data.git"
+    clone = "git clone --depth 1 https://github.com/MiraldiLab/quant-maxATAC_data"
 
     os.chdir(maxatac_dir) # Change to the directory where the repo should be cloned
     
