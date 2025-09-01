@@ -9,7 +9,7 @@ from maxatac.utilities.constants import LOG_FORMAT
 
 
 def main(argsl=None):
-    print(pyfiglet.figlet_format("maxATAC", font="big", width=120))
+    print(pyfiglet.figlet_format("quant-maxATAC", font="big", width=120))
 
     if argsl is None:
         argsl = sys.argv[1:]
