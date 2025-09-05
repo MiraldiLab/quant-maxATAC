@@ -40,7 +40,7 @@ This version requires python 3.9, `bedtools`, `samtools`, `pigz`, `wget`, `git`,
 > If you get an error regarding graphviz while training a model, re-install graphviz with `conda install graphviz`
 
 2. A. To install quant-maxATAC with first install the packages and their specific versions in requirements.txt file `pip install -r packaging/constraints/py3.9_requirements_20240807.txt`
-   B. Once the requirements are installed then install quant-maxatac with `pip install maxatac`
+   B. Once the requirements are installed then install quant-maxatac with `pip install .`
 
 3. Test installation with `maxatac -h`
 
