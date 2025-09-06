@@ -35,12 +35,12 @@ This version requires python 3.9, `bedtools`, `samtools`, `pigz`, `wget`, `git`,
 
 ### Installing with Conda
 
-1. Create a conda environment with `conda create -n maxatac -c bioconda python=3.9 samtools wget bedtools ucsc-bedgraphtobigwig pigz`
+1. Create a conda environment with `conda create -n quant-maxatac -c bioconda python=3.9 samtools wget bedtools ucsc-bedgraphtobigwig pigz`
 
 > If you get an error regarding graphviz while training a model, re-install graphviz with `conda install graphviz`
 
-2. A. To install quant-maxATAC with first install the packages and their specific versions in requirements.txt file `pip install -r packaging/constraints/py3.9_requirements_20240807.txt`
-   B. Once the requirements are installed then install quant-maxatac with `pip install .`
+2. A. To install quant-maxATAC, first download a local version of this GitHub repository. Then, install required versions of packages from the following requirements.txt file (included with the repository) `pip install -r packaging/constraints/py3.9_requirements_20240807.txt`
+   B. Once the requirements are installed then install quant-maxatac with `pip install -e /path/to/local/version/of/GitHub/repository.`
 
 3. Test installation with `maxatac -h`
 
