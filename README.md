@@ -8,7 +8,7 @@
 Quant-maxATAC is a code base for quantitative transcription factor (TF) binding prediction from ATAC-seq signal and DNA sequence in *human* cell types. Quant-maxATAC builds upon the original python package maxATAC, and it too works with both population-level (bulk) ATAC-seq and pseudobulk ATAC-seq profiles derived from single-cell (sc)ATAC-seq. Quant-maxATAC quantitatively models ChIP-seq signal in the context of cross-cell type TF binding site TFBS prediction at 32 bp resolution form ATAC-seq data. 
 
 
-### Modeling changes and improvements in quant-maxATAC over maxATAC
+### Rationale for quant-maxATAC and quantitative modeling of TF ChIP-seq signal
 
 <img width="445" height="374" alt="250831_quant_maxATAC_figures copy" src="https://github.com/user-attachments/assets/bb980fbb-5250-4d4e-889e-a41b0a24e740" />
 
