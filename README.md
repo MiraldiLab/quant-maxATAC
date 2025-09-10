@@ -179,5 +179,5 @@ ___
 
 ## Publication
 
-The qunt-maxATAC paper (Rizvi et al. 2025) is currently in submission. maxATAC-v1 manuscript is available on [PLoS Computational Biology](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010863). 
+The quant-maxATAC mansucripot (Rizvi et al. 2025) is currently under review. The maxATAC-v1 manuscript is available on [PLoS Computational Biology](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010863). 
 
