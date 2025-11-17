@@ -311,8 +311,8 @@ class calculate_R2_pearson_spearman(object):
         plt.grid(which='minor', linestyle=':', linewidth='0.5', color='grey')
         plt.grid(which='major', linestyle='-', linewidth='1', color='grey', alpha=.6)
 
-
-        plot_location='_'.join([self.results_location.split(".")[0], "scatterPlot.png"])
+        plot_location = "_".join(["_".join(self.results_location.split("_")[:-3]),"scatterPlot.png"])
+        #plot_location='_'.join([self.results_location.split(".")[0], "scatterPlot.png"])
 
         logging.info("Saving Scatterplot")
 
@@ -322,7 +322,8 @@ class calculate_R2_pearson_spearman(object):
 
         logging.info("Saving Scatterplot DF")
 
-        plot_df_location = '_'.join([self.results_location.split(".")[0], "scatterPlot_df.tsv"])
+        plot_df_location = "_".join(["_".join(self.results_location.split("_")[:-3]), "scatterPlot_df.tsv"])
+        #plot_df_location = '_'.join([self.results_location.split(".")[0], "scatterPlot_df.tsv"])
 
         plot_df.to_csv(plot_df_location, sep='\t', index=None)
 
