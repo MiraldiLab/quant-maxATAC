@@ -254,9 +254,10 @@ class calculate_R2_pearson_spearman(object):
 
         y_pred= self.prediction_array[self.blacklist_mask]
         y_obs= self.quant_goldstandard_array[self.blacklist_mask]
+        y_obs_bin = self.goldstandard_array[self.blacklist_mask]
 
 
-        pred_obs_data = {'y_pred': y_pred, 'y_obs': y_obs}
+        pred_obs_data = {'y_pred': y_pred, 'y_obs': y_obs, 'y_obs_bin': y_obs_bin}
         pred_obs_df = pd.DataFrame(pred_obs_data)
 
         # Reset index
