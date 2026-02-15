@@ -20,7 +20,7 @@ CPP_LOG_LEVEL = {
 }
 
 # build maxatac data path
-maxatac_data_path = os.path.join(os.path.expanduser('~'), "opt", "maxatac", "data")
+maxatac_data_path = os.path.join(os.path.expanduser('~'), "opt", "quant-maxatac", "data")
 
 # build processing script path names
 prepare_atac_script_dir = os.path.join(maxatac_data_path, "scripts", "ATAC",
